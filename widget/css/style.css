@@ -1,0 +1,287 @@
+@charset "UTF-8";
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body, html {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #234278;
+    position:relative;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* flex布局 */
+
+.ren-flex, .ren-flex-sb, .ren-flex-sa, .ren-flex-ac, .ren-flex-ce {
+    display: flex;
+}
+
+.ren-flex-sb {
+    justify-content: space-between;
+}
+
+.ren-flex-sa {
+    justify-content: space-around;
+}
+
+.ren-flex-ce {
+    justify-content: center;
+}
+
+.ren-flex-ac {
+    align-items: center;
+}
+/*闪烁圆点*/
+.city{
+    position: absolute;
+}
+.yz{
+  top:42vh;
+  left:65vw;
+}
+.fz{
+   top:55vh;
+   left:50vw;
+}
+.bmz{
+   top: 42vh;
+   left: 30vw;
+}
+.nmz{
+   top: 70vh;
+   left: 35vw;
+}
+.az{
+  top:70vh;
+  right:30vw;
+}
+.yuandian{
+    width: 4px;
+    height: 4px;
+    background-color: rgba(0,153,255,0.5);
+    border-radius: 50%;
+}
+.city div[class^="bowen"]{
+/*               下边4项为了让原点和波纹居中对齐*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 2px;
+    height: 2px;
+    box-shadow: 0 0 12px rgba(0,153,255,0.5);
+    border-radius: 50%;
+/*                动画：名称 时间 匀速运动 无限循环*/
+    animation: bowen 1.8s linear infinite;
+}
+
+.bowen2{
+/*                动画延迟时间：0.4s*/
+    animation-delay: 0.4s !important
+}
+
+.bowen3{
+    animation-delay: 0.8s !important
+}
+
+/*            创建动画 动画名称*/
+@keyframes bowen {
+    0%{
+
+    }
+    70%{
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+    100%{
+        width: 30px;;
+        height: 30px;
+        opacity: 0;
+    }
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.dataContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: url('../image/dataBg.jpg') no-repeat center top;
+    background-size: 100% auto;
+    overflow: hidden;
+    padding-top: 14vh;
+}
+
+.dataContainer>div.dataDiv {
+    float: left;
+}
+
+.dataLeftMain {
+    width: 33.5vw;
+    padding: 0 0.5vw;
+    box-sizing: border-box;
+    position:relative;
+    z-index:9;
+}
+
+.dataMiddleMain {
+    width: 33vw;
+    position:relative;
+    z-index:9;
+}
+
+.dataRightMain {
+    width: 33.5vw;
+    padding: 0 0.5vw;
+    box-sizing: border-box;
+    position:relative;
+    z-index:9;
+}
+
+.dataTitleHeaderBox {
+    background: url('../image/headerTitleImg.png') no-repeat;
+    background-size: 100% 100%;
+    height: 7vh;
+    line-height:5vh;
+    text-align: center;
+    font-size: 1.2vw;
+    color: #a7dbff;
+    font-weight: bold;
+}
+
+.dataBodyTopBox {
+    width: 100%;
+    height: 35vh;
+    background: url('../image/boxBgImg.png') repeat-y;
+    background-size: 100% auto;
+    position:relative;
+}
+
+.dataSubBox {
+    margin-top: 2vh;
+}
+
+.dataBodySubBox {
+    width: 100%;
+    height: 27vh;
+    background: url('../image/boxBgImg.png') repeat-y;
+    background-size: 100% auto;
+    position:relative;
+}
+.tipSpan{
+  font-size:1vw;
+  color:#00f2f1;
+  position:absolute;
+  right:2vw;
+  top:-2.5vh;
+}
+.dataBodyBox {
+    width: 100%;
+    height: 74.1vh;
+    background: url('../image/boxBgImg.png') repeat-y;
+    background-size: 100% auto;
+}
+.monthTradeMoneyNumMain{
+  margin-bottom:2vh;
+}
+.monthTradeMoneyNumBox {
+    text-align: center;
+    color: #fff;
+    font-size:1.2vw;
+    align-items:baseline;
+    /*border:0.2vw solid #74a5f1;*/
+    /*background-image: linear-gradient(#00ebfd, #006dc5);*/
+    display:inline;
+    padding:0.2vh 0.5vw 0;
+    width:90%;
+    margin:0 auto;
+    box-sizing:border-box;
+}
+
+.monthTradeMoneyNumBox span {
+    font-size: 4.6vw;
+    font-weight: bold;
+    font-family: "numberFont";
+    letter-spacing: 0.2vw;
+}
+
+.companyListBox {
+    overflow: hidden;
+    padding: 0 1vw;
+}
+
+.companyListBox>div {
+    padding: 0.8vw;
+    width: 25%;
+    float: left;
+    box-sizing: border-box;
+}
+
+.companyListBox>div span {
+    background: url('../image/companyBg.png') no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    display: block;
+    height: 6vh;
+    line-height: 6.4vh;
+    overflow: hidden;
+    font-size: 2.2vh;
+    color: #00ffff;
+    text-align: center;
+    margin-right:10px;
+}
+.dataBodyList{
+  width:90%;
+  margin:0 auto;
+  background:rgba(3,169,255,0.1);
+}
+.dataBodyItem{
+  overflow:hidden;
+  font-size:1vw;
+  height:4.5vh;
+  line-height:4.5vh;
+  border-bottom:1px solid #0d4e7e;
+}
+.dataBodyItem:last-of-type{
+  border:none;
+}
+.dataBodyItem span{
+  position:relative;
+  float:left;
+  color:#00ffff;
+  padding-left:3vh;
+}
+.dataBodyItem span::before{
+  content:"";
+  display:block;
+  width:3px;
+  height:3px;
+  border:1px solid #00ffff;
+  transform:rotate(45deg);
+  position:absolute;
+  left:0.8vw;
+  top:50%;
+  margin-top:-1.5px;
+  box-sizing:border-box;
+}
+.dataBodyItem em{
+  float:right;
+  color:#ffff00;
+  padding-right:1vw;
+  fonts-size:3vw;
+  font-weight:bold;
+}

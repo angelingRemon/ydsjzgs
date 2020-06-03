@@ -1,0 +1,27 @@
+*{
+	margin:0;
+	padding:0;
+}
+img{width:100%;}
+a{ text-decoration: none;}
+a,
+input,
+textarea,
+button{
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	outline:none;
+}
+input,
+button {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+p{ margin:0; padding:0;}
+i,em{ font-style: normal;}
+ul,li,dl,dd,dt{ margin:0;padding:0; font-style:normal; list-style: none;}
+
+img {
+	display: block;
+	max-width: 100%;
+	vertical-align: top;
+}

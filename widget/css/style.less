@@ -1,0 +1,329 @@
+@charset "UTF-8";
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #234278;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* flex布局 */
+.ren-flex,
+.ren-flex-sb,
+.ren-flex-sa,
+.ren-flex-ac,
+.ren-flex-ce {
+    display: flex;
+}
+
+.ren-flex-sb {
+    justify-content: space-between;
+}
+
+.ren-flex-sa {
+    justify-content: space-around;
+}
+
+.ren-flex-ce {
+    justify-content: center;
+}
+
+.ren-flex-ac {
+    align-items: center;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.dataContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.dataLeftMain {
+    width: 13%;
+    height: 100%;
+    background: #1a3564;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    .dataLeftLogo {
+       padding:4vh 0 3vh;
+       div {
+           background: #fff;
+           width: 10vh;
+           height: 10vh;
+           border-radius: 50%;
+           margin: 0 auto;
+           padding-top:1.5vh;
+           img {
+               width:7vh;
+               height:7vh;
+               margin: 0 auto;
+               display: block;
+           }
+       }
+    }
+
+    .dataLeftProductList {
+        a {
+            display: block;
+            height: 8vh;
+            line-height: 8vh;
+            text-align: center;
+            font-size: 1.4vw;
+            color: #fff;
+            margin: 1vh 0;
+
+            &.active {
+                background: #485d83;
+            }
+        }
+    }
+    .copyRight {
+        height:12vh;
+        line-height: 4vh;
+        background: #1a3564;
+        text-align: center;
+        font-size: 1.1vw;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: #fff;
+        p{
+            line-height:3vh;
+        }
+        div {
+            width: 80%;
+            margin: 0.5vh auto 0;
+            position: relative;
+
+            a {
+                display: block;
+                font-size: 1vw;
+                color: #fff;
+                background: #365993;
+                line-height:4.4vh;
+                height:4vh;
+                overflow: hidden;
+            }
+
+            input {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 999;
+            }
+        }
+    }
+}
+
+.dataRightMain {
+    padding-left: 13%;
+
+    .dataRightHeaderBox {
+        height: 10vh;
+        line-height: 10vh;
+        background: #2d68a1;
+        padding: 0 1.5vw;
+        color: #fff;
+
+        h3 {
+            font-size: 2.6vw;
+            letter-spacing: 0.5vw;
+        }
+
+        div {
+            font-size: 2vw;
+            letter-spacing: 0.3vw;
+        }
+
+    }
+}
+
+.dataRightBodyBox {
+    padding: 3vh 1.5vw 0;
+}
+
+.dataRightItem {
+    width: 26vw;
+    height: 26vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 2vh 2vw 0;
+    h3 {
+        font-size: 1.6vw;
+        color: #fff;
+        padding-top: 0.8vh;
+    }
+
+    // p{
+    //     // font-family:numberFont;
+    //     padding-top:0.5vh;
+    //     font-size:2vw;
+    //     // line-height:5vw;
+    //     span{
+    //         background:#1a3564;
+    //         color:#fff;
+    //         margin-right:0.5vw;
+    //         display: block;
+    //         width:2.5vw;
+    //         height:5vh;
+    //         text-align:center;
+    //         line-height:5vh;
+    //         font-weight:bold;
+    //     }
+
+    // }
+    h4 {
+        font-size: 5vw;
+        font-family: "numberFont";
+        line-height: 5vw;
+        color: #fff;
+        letter-spacing: 0.5vw;
+        font-weight: 300;
+    }
+
+    div {
+        padding-top:1vh;
+
+        span {
+            font-size: 1vw;
+            color: #fff;
+
+            img {
+                width:1.2vw;
+                height:2.4vh;
+                position: relative;
+                top:-0.2vh;
+                margin-left: 0.5vw;
+            }
+        }
+    }
+}
+
+.dataRightBodySub {
+    width: 100%;
+    padding-top: 4vh;
+
+    .dataRightBodySubItem {
+        width: 48.2%;
+        background: #365993;
+        border-radius: 20px;
+        position: relative;
+
+        h3 {
+            padding: 3.5vh 3vw 1.5vh;
+            font-size: 1.6vw;
+            color: #fff;
+        }
+    }
+}
+
+// 登录
+.loginSectionMain {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9999999;
+    background-image: url(../image/loginBgImg.png);
+    background-size: 45vw auto;
+    background-repeat: no-repeat;
+    background-position: 45vw 28vh;
+}
+
+.loginMain {
+    width:20vw;
+    margin: 22vh 0 0 13vw;
+}
+
+.loginLoginBox {
+    img {
+        width: 10vw;
+        margin: 0 auto;
+    }
+}
+.loginTitleBox {
+    text-align: center;
+    font-size:2vw;
+    color: #fff;
+    padding: 7vh 0 4vh;
+    font-weight:bold;
+}
+
+.loginLoginItem {
+    border-bottom: 1px solid #fff;
+    height: 8vh;
+    line-height: 8vh;
+    padding: 0 15px 0 7vh;
+    background-repeat: no-repeat;
+    background-position: 2vh center;
+    background-size: 3vh 3vh;
+    input {
+        border: none;
+        background: none;
+        height: 8vh;
+        line-height:8vh;
+        width: 100%;
+        font-size: 1vw;
+        outline: none;
+        color: #fff;
+        display:block;
+        &::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: #fff;
+        }
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+            -webkit-text-fill-color: #333;
+        }
+    }
+}
+.loginTipBox {
+    padding: 1.8vh 0 1.2vh;
+    font-size:1vw;
+    color: #fff;
+    line-height:3vh;
+    text-align: justify;
+}
+
+.loginSubmitBox {
+    padding: 1vh 0;
+
+    a {
+        display: block;
+        width: 100%;
+        height: 6vh;
+        line-height:6.2vh;
+        background: #fff;
+        color: #333;
+        text-align: center;
+        font-size: 1.2vw;
+        border-radius: 5vh;
+        overflow: hidden;
+    }
+}

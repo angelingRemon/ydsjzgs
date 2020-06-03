@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>刷多宝</title>
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css?4564" />
+    <link rel="stylesheet" type="text/css" href="../../css/loading1.css" />
+</head>
+
+<body>
+    <section class="loginSectionMain">
+        <div class="loginMain">
+            <div class="loginTitleBox">数据可视化登录</div>
+            <div class="loginFormBox">
+                <div class="loginLoginItem line_bottom" style="background-image:url('../../image/zhanghaoIcon.png')">
+                    <input type="text" placeholder="请输入账号" id="user" value="">
+                </div>
+                <div class="loginLoginItem line_bottom" style="background-image:url('../../image/mimaIcon.png')">
+                    <input type="password" placeholder="请输入密码" id="password" value="">
+                </div>
+            </div>
+            <div class="loginTipBox">
+                此账号密码与管理后台一致，如忘记，请到管理后台找回！
+            </div>
+            <div class="loginSubmitBox">
+                <a href="javascript:;" id="loginSubmit">登录</a>
+            </div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript" src="../../script/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../script/H.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/canvas-particle.js"></script>
+<script type="text/javascript" src="../../script/outwin.js"></script>
+<script type="text/javascript" src="../../script/db.js"></script>
+<script type="text/javascript" src="../../script/rand.js"></script>
+<script type="text/javascript" src="../../script/loading1.js"></script>
+<script src="http://ttsplus.xylrcs.cn/Public/js/response.js"></script>
+<script>
+    var db;
+    H.ready(function () {
+        H.dblclickToCloseApp();
+        db = api.require('db');
+        //背景特效
+        var config = {
+            vx: 4,
+            vy: 4,
+            height: 2,
+            width: 2,
+            count: 100,
+            color: "121, 162, 185",
+            stroke: "100,200,180",
+            dist: 6000,
+            e_dist: 20000,
+            max_conn: 10
+        }
+        CanvasParticle(config);
+        //遥控器
+        // var tvcontrol = api.require('tvcontrol');
+        // tvcontrol.open({
+        //     coverBack: false,
+        //     coverHome: false,
+        //     canClick: false,
+        //     coverOtherDefault: true
+        // }, function (ret, err) {
+        //     if (ret.keyCode == 19) { //向上键
+        //         keyUp();
+        //         alert(JSON.stringify(res));
+        //     } else if (ret.keyCode == 20) { //向下键
+        //         keyDown();
+        //         alert(JSON.stringify(res));
+        //     } else if (ret.keyCode == 23) {
+        //         keyEnter();
+        //         alert(JSON.stringify(res));
+        //     }
+        // });
+        // 登录
+        $("#loginSubmit").click(function () {
+            var $user = $('#user').val();
+            var $password = $('#password').val();
+            if (!is_define($user)) {
+                H.toast('请输入账号');
+            } else if (!is_define($password)) {
+                H.toast('请输入密码');
+            } else {
+                loginPost($user, $password);
+            }
+
+        })
+    });
+    //请求登录
+    function loginPost($user, $password) {
+        //显示loading
+        showLoading();
+        //请求登录
+        H.ajax(loginPostCallback, url, 'post', {
+            values: {
+                requestType: "tvdata",
+                requestKeywords: "login",
+                account: $user,
+                password: $password
+            }
+        }, 'json', {});
+    }
+
+
+    //请求登陆返回
+    function loginPostCallback(ret, err) {
+        if (ret.body) {
+            if (ret.body.responseStatus === 1) {
+                var platId = ret.body.platId;
+                //定时方法
+                setTimeout(function () {
+                    hideLoading();
+                    setLogin(platId);
+                    data = getLogin();
+                    H.execScript('index', '', 'getIndexData()');
+                    // 打开首页
+                    H.openWin('index', '../../index.html');
+                    // H.closeWin();
+                }, 2000);
+            } else {
+                hideLoading();
+                if (ret.statusCode == 0) {
+                    H.toast('网络异常，请稍后重试！')
+                } else {
+                    H.toast(response[ret.body.responseStatus]);
+                }
+            }
+        } else {
+            H.toast(JSON.stringify(err));
+        }
+    }
+</script>
+
+</html>

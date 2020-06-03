@@ -1,0 +1,35 @@
+.overlazy{position:fixed;left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0); z-index:99999; display:none;}
+
+.loading {font-family:'黑体';  position: fixed; width: 120px; height: 120px; border-radius: 8px; background: rgba(0,0,0,0.6); left: 50%; top: 50%; margin-top: -80px; margin-left: -60px; }
+
+.loadicon { height: 40px; margin-top:14px; background:url(../image/wldlogo.png) no-repeat center center; background-size:24% auto; display: block; opacity:0.8; }
+
+.loadname{ height:26px; line-height:26px; text-align:center; color:#fff; font-size:16px; padding-top:5px;}
+
+.loaddian { height: 6px; padding-top: 8px; text-align: center; width: 42px; margin: 0 auto; position: relative; }
+
+.loaddian em { display: inline-block; width: 6px; height: 6px; border-radius: 6px; margin: 0 4px; background: #fff;  vertical-align: middle; -webkit-animation-fill-mode: both;
+          animation-fill-mode: both; }
+
+.loaddian em:nth-child(1) {-webkit-animation: stretchdelay 0.8s 0s infinite cubic-bezier(.2, .68, .18, 1.08);
+          animation: stretchdelay 0.8s 0s infinite cubic-bezier(.2, .68, .18, 1.08);}
+
+.loaddian em:nth-child(2) {-webkit-animation: stretchdelay 0.8s 0.24s infinite cubic-bezier(.2, .68, .18, 1.08);
+          animation: stretchdelay 0.8s 0.24s infinite cubic-bezier(.2, .68, .18, 1.08); }
+
+.loaddian em:nth-child(3) { -webkit-animation: stretchdelay 0.8s 0.36s infinite cubic-bezier(.2, .68, .18, 1.08);
+          animation: stretchdelay 0.8s 0.36s infinite cubic-bezier(.2, .68, .18, 1.08); }
+ @keyframes
+stretchdelay {from {
+ opacity:0.1;
+}
+
+to { opacity: 1; }
+}
+ @-webkit-keyframes
+stretchdelay {  from {
+ opacity:0.1;
+}
+
+to { opacity: 1; }
+}
