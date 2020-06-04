@@ -25,78 +25,45 @@
 	<section class="dataContainer">
 		<!--闪烁圆点 -->
 		<div class="map">
-				<div class="city yz">
-						<div class="yuandian"></div>
-						<div class="bowen1"></div>
-						<div class="bowen2"></div>
-						<div class="bowen3"></div>
-				</div>
-				<div class="city fz">
-						<div class="yuandian"></div>
-						<div class="bowen1"></div>
-						<div class="bowen2"></div>
-						<div class="bowen3"></div>
-				</div>
-				<div class="city bmz">
-						<div class="yuandian"></div>
-						<div class="bowen1"></div>
-						<div class="bowen2"></div>
-						<div class="bowen3"></div>
-				</div>
-				<div class="city nmz">
-						<div class="yuandian"></div>
-						<div class="bowen1"></div>
-						<div class="bowen2"></div>
-						<div class="bowen3"></div>
-				</div>
-				<div class="city az">
-						<div class="yuandian"></div>
-						<div class="bowen1"></div>
-						<div class="bowen2"></div>
-						<div class="bowen3"></div>
-				</div>
+			<div class="city yz">
+				<div class="yuandian"></div>
+				<div class="bowen1"></div>
+				<div class="bowen2"></div>
+				<div class="bowen3"></div>
+			</div>
+			<div class="city fz">
+				<div class="yuandian"></div>
+				<div class="bowen1"></div>
+				<div class="bowen2"></div>
+				<div class="bowen3"></div>
+			</div>
+			<div class="city bmz">
+				<div class="yuandian"></div>
+				<div class="bowen1"></div>
+				<div class="bowen2"></div>
+				<div class="bowen3"></div>
+			</div>
+			<div class="city nmz">
+				<div class="yuandian"></div>
+				<div class="bowen1"></div>
+				<div class="bowen2"></div>
+				<div class="bowen3"></div>
+			</div>
+			<div class="city az">
+				<div class="yuandian"></div>
+				<div class="bowen1"></div>
+				<div class="bowen2"></div>
+				<div class="bowen3"></div>
+			</div>
 		</div>
-    <!-- 左 -->
+		<!-- 左 -->
 		<div class="dataDiv dataLeftMain">
 			<div class="dataTopBox">
 				<div class="dataTitleHeaderBox">
 					各公司本月交易额
 				</div>
 				<div class="dataBodyTopBox">
-          <div class="dataBodyList">
-							<div class="dataBodyItem">
-									<span>益点呼和浩特总公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点赤峰分公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点张家口分公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点金川分公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点包头分公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点润宇分公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点润宇分公司</span>
-									<em>232159712.9元</em>
-							</div>
-							<div class="dataBodyItem">
-									<span>益点四子王旗分公司</span>
-									<em>232159712.9元</em>
-							</div>
-          </div>
+					<div class="dataBodyList"></div>
 				</div>
 				<img src="image/boxFooterImg.png" alt="">
 			</div>
@@ -129,16 +96,16 @@
 						<span>呼市</span>
 					</div>
 					<div>
-						<span>赤峰</span>
+						<span>包头</span>
 					</div>
 					<div>
-						<span>张家口</span>
+						<span>赤峰</span>
 					</div>
 					<div>
 						<span>金川</span>
 					</div>
 					<div>
-						<span>包头</span>
+						<span>张家口</span>
 					</div>
 					<div>
 						<span>润宇</span>
@@ -159,7 +126,7 @@
 		<div class="dataDiv dataRightMain">
 			<div class="dataTopBox">
 				<div class="dataTitleHeaderBox">
-					本月总激活台数
+					各公司总激活台数
 				</div>
 				<div class="dataBodyTopBox">
 					<span class="tipSpan">单位：台</span>
@@ -181,69 +148,21 @@
 	</section>
 	<!-- 自定义区域 结束 -->
 	<script>
-		var currentNum = 0;
 		var timer = null;
+		var companyTradeData = [];
 		H.ready(function() {
 			//定时清缓存(一分钟清除一次缓存)
 			setInterval(function() {
 				api.clearCache(function() {
 					// H.toast('缓存已清除');
 				});
-			}, 600000);
-			// 定时请求数据
-			// getIndexData();
+			}, 20000);
 			//双击返回退出APP
 			H.dblclickToCloseApp();
-			//本月总交易额
-			var money = 90000000000;
-			setInterval(function(){
-        money = money + Math.floor(Math.random()*10000);
-				dynNum('monthTradingNum',money, 2, true);
-			},5000)
-			//南丁格尔玫瑰图
-			var legendData = ['呼市', '赤峰', '张家口', '金川', '包头', '润宇', '太原', '四子王旗'];
-			var seriesData = [{
-				value: 60,
-				name: '呼市'
-			}, {
-				value: 5,
-				name: '赤峰'
-			}, {
-				value: 15,
-				name: '张家口'
-			}, {
-				value: 25,
-				name: '金川'
-			}, {
-				value: 20,
-				name: '包头'
-			}, {
-				value: 35,
-				name: '润宇'
-			}, {
-				value: 30,
-				name: '太原'
-			}, {
-				value: 40,
-				name: '四子王旗'
-			}]
-			pieChartTrade("pieChartTrade", legendData, seriesData);
-			//近七日激活台数
-			var lineXaxisData = ['27日', '28日', '29日', '30日', '31日', '01日', '02日'];
-			var lineSeriesData = ['100', '200', '300', '400', '100', '700', '300']
-			drawLine('lineChartActive', lineXaxisData, lineSeriesData)
-				//各公司今日交易额
-			var columnXaxisData = ['呼市', '赤峰', '张家口', '金川', '包头', '润宇', '太原', '四子王旗'];
-			var columnSeriesData = ['10000.00', '4234.07', '2340.00', '4230.03', '6430.38', '9870.83', '7830.35', '4230.98'];
-			drawColumn('columnChartTrade', columnXaxisData, columnSeriesData);
-
-			//本月总激活台数
-			var columnXaxisData = ['四子王旗', '太原', '润宇', '包头', '金川', '张家口', '赤峰', '呼市'];
-			var columnSeriesData = ['234', '423', '463', '500', '643', '783', '987','1200'];
-			drawColumnH('columnChartMonthActive', columnXaxisData, columnSeriesData);
+			//定时请求数据
+			getInfoData();
 		})
-
-		//
+    //南丁格尔图
 		function pieChartTrade(selecter, legendData, seriesData) {
 			var $selecter = document.getElementById(selecter);
 			var $myChart = echarts.init($selecter);
@@ -287,7 +206,6 @@
 				//使用刚指定的配置项和数据显示图表。
 			$myChart.setOption(option);
 		}
-
 		// 折线图
 		function drawLine(selecter, monthData, moneyData) {
 			var $selecter = document.getElementById(selecter);
@@ -372,7 +290,7 @@
 				//使用刚指定的配置项和数据显示图表。
 			$myChart.setOption(option);
 		}
-
+		//柱状图
 		function drawColumn(selecter, monthData, moneyData) {
 			var $selecter = document.getElementById(selecter);
 			var $myChart = echarts.init($selecter);
@@ -440,7 +358,7 @@
 								// 	}]
 								// ),
 								color: function(params) {
-									var colorList = ['#ffdb5c', '#ff9f7f', '#fb7293', '#e7bcf3', '#8378ea', '#ffdb5c', '#0AAF9F', '#E89589', '#16A085', '#4A235A', '#C39BD3 ', '#F9E79F', '#BA4A00', '#ECF0F1', '#1d9dff', '#9fe6b8'];
+									var colorList = ['#ffdb5c', '#ff9f7f', '#fb7293', '#e7bcf3', '#8378ea', '#ffdb5c', '#0AAF9F', '#E89589'];
 									return colorList[params.dataIndex]
 								},
 								label: {
@@ -464,7 +382,7 @@
 				//使用刚指定的配置项和数据显示图表。
 			$myChart.setOption(option);
 		}
-
+		//横向柱状图
 		function drawColumnH(selecter, monthData, moneyData) {
 			var $selecter = document.getElementById(selecter);
 			var $myChart = echarts.init($selecter);
@@ -503,7 +421,7 @@
 					},
 					yAxis: {
 						type: 'category',
-						data:monthData,
+						data: monthData,
 						axisLabel: {
 							show: true,
 							textStyle: {
@@ -526,10 +444,10 @@
 					},
 					series: [{
 						type: 'bar',
-						data:moneyData,
+						data: moneyData,
 						barWidth: 13,
 						color: function(params) {
-							var colorList = ['#ffdb5c', '#ff9f7f', '#fb7293', '#e7bcf3', '#8378ea', '#ffdb5c', '#0AAF9F', '#E89589', '#16A085', '#4A235A', '#C39BD3 ', '#F9E79F', '#BA4A00', '#ECF0F1', '#1d9dff', '#9fe6b8'];
+							var colorList = ['#ffdb5c', '#ff9f7f', '#fb7293', '#e7bcf3', '#8378ea', '#ffdb5c', '#0AAF9F', '#E89589'];
 							return colorList[params.dataIndex]
 						},
 						label: {
@@ -552,137 +470,123 @@
 			$myChart.setOption(option);
 		}
 
+    function getInfoData(){
+				getTotalTradingData();
+				getCompanyMonthTradingData();
+				getCompanyDayTradingData();
+				getCompanyActiveData();
+				getweekTotalActData();
+				timer = setTimeout(getInfoData, 20000);
+		}
+		//本月总交易
+		function getTotalTradingData() {
+			H.ajax(getTotalTradingDataCallback, url, 'post', {
+				values: {
+					method: 'curMonthTotalAmt',
+				}
+			}, 'json', {});
+		}
 
-
-		function getInfoCallback(ret, err) {
+		function getTotalTradingDataCallback(ret, err) {
 			if (ret.body) {
-				if (ret.body.responseStatus === 1) {
-					// hideLoading();
-					var datas = ret.body;
-					$('#title').text(datas.name + '实时数据统计');
-					$('#logoImg').attr('src', datas.logo);
-					var interText = doT.template($("#porListBox").text());
-					$(".dataLeftProductList").html(interText(datas.productlist));
-					if (!productID) {
-						$('.dataLeftProductList a:first-of-type').addClass('active');
-					} else {
-						var selectedPro = $('.dataLeftProductList a[data-id="' + productID + '"]')
-						if (selectedPro.length) {
-							selectedPro.addClass('active').siblings().removeClass('active');
-						} else {
-							$('.dataLeftProductList a:first-of-type').addClass('active');
-						}
-					}
-					$('.dataLeftProductList a.active').trigger('click');
-					if (!datas.interval) {
-						datas.interval == 30000;
-					}
-					timer = setTimeout(getIndexData, datas.interval);
-
-				} else {
-					if (ret.statusCode == 0) {
+				if (ret.body.code === 200) {
+						var datas = ret.body.data;
+						dynNum('monthTradingNum', datas, 2, true);
+				}else {
 						clearTimeout(timer);
-						alert('网络连接错误，请重新登录！')
-						exitLogin()
-						H.openWin('login', 'html/login/login.html');
-
-					} else {
-						H.toast(response[ret.body.responseStatus]);
-					}
+						alert('网络连接错误，请检查网络！')
 				}
-			} else {
-
 			}
 		}
-		// 请求当月交易
-		function getMonthTradingData(pid, porid) {
-			H.ajax(getMonthTradingsDataCallback, url, 'post', {
+		//各公司本月交易额
+		function getCompanyMonthTradingData() {
+			H.ajax(getCompanyMonthTradingDataCallback, url, 'post', {
 				values: {
-					requestType: "tvdata",
-					requestKeywords: "trade",
-					platformID: pid,
-					productID: porid
+					method: 'curMonthTotalAmtFirm',
 				}
 			}, 'json', {});
 		}
 
-		function getMonthTradingsDataCallback(ret, err) {
+		function getCompanyMonthTradingDataCallback(ret, err) {
 			if (ret.body) {
-				if (ret.body.responseStatus === 1) {
-					var datas = ret.body.data;
-					if (parseFloat(datas.inc) < 0) {
-						datas.status = false;
-						datas.inc = Math.abs(parseFloat(datas.inc));
-						datas.pecent = Math.abs(parseFloat(datas.pecent));
-					} else {
-						datas.status = true;
-					}
-					dynNum('monthTradingNum', datas.cur, 2, true);
-					var interText = doT.template($("#monthTradingInfo").text());
-					$("#monthTradingBox").html(interText(datas));
+				if (ret.body.code === 200) {
+						var datas = ret.body.data;
+						var legendData = datas.legendData;
+						var seriesData = datas.seriesData;
+						var interText = doT.template($("#companyTradeData").text());
+						$(".dataBodyList").html(interText(datas.seriesData));
+						pieChartTrade("pieChartTrade", legendData, seriesData);
+				}else {
+						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
-		// 请求当月激活
-		function getMonthActiveData(pid, porid) {
-			H.ajax(getMonthActiveDataCallback, url, 'post', {
+		//各公司今日总交易额
+		function getCompanyDayTradingData() {
+			H.ajax(getCompanyDayTradingDataCallback, url, 'post', {
 				values: {
-					requestType: "tvdata",
-					requestKeywords: "active",
-					platformID: pid,
-					productID: porid
+					method: 'curDayTotalAmtFirm',
 				}
 			}, 'json', {});
 		}
 
-		function getMonthActiveDataCallback(ret, err) {
+		function getCompanyDayTradingDataCallback(ret, err) {
 			if (ret.body) {
-				if (ret.body.responseStatus === 1) {
-					var datas = ret.body.data;
-					if (parseFloat(datas.inc) < 0) {
-						datas.status = false;
-						datas.inc = Math.abs(parseFloat(datas.inc));
-						datas.pecent = Math.abs(parseFloat(datas.pecent));
-					} else {
-						datas.status = true;
-					}
-					dynNum('monthActiveNum', datas.cur, 0, false);
-					var interText = doT.template($("#monthActiveInfo").text());
-					$("#monthActiveBox").html(interText(datas));
+				if (ret.body.code === 200) {
+						var datas = ret.body.data;
+						var columnXaxisData = datas.X;
+						var columnSeriesData = datas.Y;
+						drawColumn('columnChartTrade', columnXaxisData, columnSeriesData);
+				}else {
+						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
-		// 请求当月收益
-		function getMonthIncomeData(pid, porid) {
-			H.ajax(getMonthIncomeDataCallback, url, 'post', {
+		//各公司总激活量
+		function getCompanyActiveData() {
+			H.ajax(getCompanyActiveDataCallback, url, 'post', {
 				values: {
-					requestType: "tvdata",
-					requestKeywords: "income",
-					platformID: pid,
-					productID: porid
+					method: 'curDayTotalActFirm',
 				}
 			}, 'json', {});
 		}
 
-		function getMonthIncomeDataCallback(ret, err) {
+		function getCompanyActiveDataCallback(ret, err) {
 			if (ret.body) {
-				if (ret.body.responseStatus === 1) {
-					var datas = ret.body.data;
-					if (parseFloat(datas.inc) < 0) {
-						datas.status = false;
-						datas.inc = Math.abs(parseFloat(datas.inc));
-						datas.pecent = Math.abs(parseFloat(datas.pecent));
-					} else {
-						datas.status = true;
-					}
-					dynNum('monthIncomeNum', datas.cur, 2, true);
-					var interText = doT.template($("#monthIncomeInfo").text());
-					$("#monthIncomeBox").html(interText(datas));
+				if (ret.body.code === 200) {
+						var datas = ret.body.data;
+						var columnXaxisData = datas.X;
+						var columnSeriesData = datas.Y;
+						drawColumnH('columnChartMonthActive', columnXaxisData, columnSeriesData);
+				}else {
+						alert('网络连接错误，请检查网络！')
+				}
+			}
+		}
+		//近七日激活台数
+		function getweekTotalActData() {
+			H.ajax(getweekTotalActDataCallback, url, 'post', {
+				values: {
+					method: 'weekTotalAct',
+				}
+			}, 'json', {});
+		}
+
+		function getweekTotalActDataCallback(ret, err) {
+			if (ret.body) {
+				if (ret.body.code === 200) {
+						var datas = ret.body.data;
+						var lineXaxisData = datas.X;
+						var lineSeriesData = datas.Y;
+						drawLine('lineChartActive', lineXaxisData, lineSeriesData)
+				}else {
+						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
 		// 动态数字
 		function dynNum(seleter, curDatas, decimal_places, sound) {
+			var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
 			var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
 			var min = $('#' + seleter).attr('data-curDatas');
 			min = min ? Number(min) : 0;
@@ -701,88 +605,33 @@
 					})
 				}
 			}
-			setTimeout(function () {
+			setTimeout(function() {
 				$('#' + seleter).prop('number', min * decimal_factor).animateNumber({
 					number: curDatas * decimal_factor,
-					numberStep: function (now, tween) {
+					numberStep: function(now, tween) {
+						// $.animateNumber.numberStepFactories.separator(',');
 						var floored_number = Math.floor(now) / decimal_factor,
 							target = $(tween.elem);
-
 						if (decimal_places > 0) {
 							// force decimal places even if they are 0
 							floored_number = floored_number.toFixed(decimal_places);
 							// replace '.' separator with ','
 							floored_number = floored_number.toString().replace('.', '.');
 						}
-
 						target.text(floored_number);
 					}
 				}, 1400);
-			},400)
-				$('#' + seleter).attr('data-curDatas', curDatas);
-		}
-		//最近七日交易折线图
-		function getTradelineData(pid, porid) {
-			H.ajax(getTradelineDataCallback, url, 'post', {
-				values: {
-					requestType: "tvdata",
-					requestKeywords: "tradeline",
-					platformID: pid,
-					productID: porid
-				}
-			}, 'json', {});
-		}
-
-		function getTradelineDataCallback(ret, err) {
-			if (ret.body) {
-				if (ret.body.responseStatus === 1) {
-					var datas = ret.body.data;
-					lineDayData = datas.dates;
-					lineMoneyData = datas.sums;
-					switch (datas.dates.length) {
-						case 5:
-							$('.tradeDay').text('五')
-							break;
-						case 6:
-							$('.tradeDay').text('六')
-							break;
-						case 7:
-							$('.tradeDay').text('七')
-							break;
-						default:
-							$('.tradeDay').text('七')
-					}
-					drawLine("myChartLine", lineDayData, lineMoneyData);
-				} else {
-					// H.toast(response[ret.body.responseStatus]);
-				}
-			}
-		}
-		//最近七日激活柱状图
-		function getActivelineData(pid, porid) {
-			H.ajax(getActivelineDataCallback, url, 'post', {
-				values: {
-					requestType: "tvdata",
-					requestKeywords: "activeline",
-					platformID: pid,
-					productID: porid
-				}
-			}, 'json', {});
-		}
-
-		function getActivelineDataCallback(ret, err) {
-			if (ret.body) {
-				if (ret.body.responseStatus === 1) {
-					var datas = ret.body.data;
-					columnDayData = datas.dates;
-					columnMoneyData = datas.sums;
-					drawColumn("myChartColumn", columnDayData, columnMoneyData);
-				} else {
-					// H.toast(response[ret.body.responseStatus]);
-				}
-			}
+			}, 400)
+			$('#' + seleter).attr('data-curDatas', curDatas);
 		}
 	</script>
 </body>
-
+<script id="companyTradeData" type="text/x-dot-template">
+	{{ for(var index in it){ }}
+		<div class="dataBodyItem">
+			<span>{{=it[index].fulName}}</span>
+			<em>{{=it[index].value}}元</em>
+		</div>
+	{{ } }}
+</script>
 </html>
