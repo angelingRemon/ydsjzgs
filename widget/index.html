@@ -149,17 +149,20 @@
 	<!-- 自定义区域 结束 -->
 	<script>
 		var timer = null;
+		var interTimer = null;
 		var companyTradeData = [];
+		var settings={};
 		H.ready(function() {
 			//定时清缓存(一分钟清除一次缓存)
 			setInterval(function() {
 				api.clearCache(function() {
 					// H.toast('缓存已清除');
 				});
-			}, 20000);
+			}, 60000);
 			//双击返回退出APP
 			H.dblclickToCloseApp();
 			//定时请求数据
+			getSettingData();
 			getInfoData();
 		})
     //南丁格尔图
@@ -476,13 +479,34 @@
 				getCompanyDayTradingData();
 				getCompanyActiveData();
 				getweekTotalActData();
-				timer = setTimeout(getInfoData, 20000);
+				var intervals = settings.interval || 10000;
+				timer = setTimeout(getInfoData,intervals);
+		}
+		//获取设置信息
+		function getSettingData() {
+			H.ajax(getSettingDataCallback, url, 'post', {
+				values: {
+					method: 'getSetting',
+				}
+			}, 'json', {});
+		}
+
+		function getSettingDataCallback(ret, err) {
+			if (ret.body) {
+				if (ret.body.code === 200) {
+						settings = ret.body.data;
+						interTimer = setTimeout(getSettingData,60000);
+				}else {
+						clearTimeout(interTimer);
+						alert('网络连接错误，请检查网络！')
+				}
+			}
 		}
 		//本月总交易
 		function getTotalTradingData() {
 			H.ajax(getTotalTradingDataCallback, url, 'post', {
 				values: {
-					method: 'curMonthTotalAmt',
+					method: 'monthTotalTrade',
 				}
 			}, 'json', {});
 		}
@@ -502,7 +526,7 @@
 		function getCompanyMonthTradingData() {
 			H.ajax(getCompanyMonthTradingDataCallback, url, 'post', {
 				values: {
-					method: 'curMonthTotalAmtFirm',
+					method: 'monthTotalTradeFirm',
 				}
 			}, 'json', {});
 		}
@@ -525,7 +549,7 @@
 		function getCompanyDayTradingData() {
 			H.ajax(getCompanyDayTradingDataCallback, url, 'post', {
 				values: {
-					method: 'curDayTotalAmtFirm',
+					method: 'dayTotalTradeFirm',
 				}
 			}, 'json', {});
 		}
@@ -542,11 +566,11 @@
 				}
 			}
 		}
-		//各公司总激活量
+		//各公司当月激活量
 		function getCompanyActiveData() {
 			H.ajax(getCompanyActiveDataCallback, url, 'post', {
 				values: {
-					method: 'curDayTotalActFirm',
+					method: 'monthTotalActiveFirm',
 				}
 			}, 'json', {});
 		}
@@ -567,7 +591,7 @@
 		function getweekTotalActData() {
 			H.ajax(getweekTotalActDataCallback, url, 'post', {
 				values: {
-					method: 'weekTotalAct',
+					method: 'weekTotalActive',
 				}
 			}, 'json', {});
 		}
