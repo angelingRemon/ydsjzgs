@@ -3,24 +3,14 @@
 
 <head>
 	<meta charset="utf-8">
+
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/loading1.css" />
 	<title>益点数据</title>
 </head>
 
 <body>
-	<script src="script/jquery-1.9.1.min.js"></script>
-	<script src="script/echarts.min.js"></script>
-	<script src="script/api.js?102123"></script>
-	<script src="script/H.js"></script>
-	<script src="script/db.js"></script>
-	<script src="script/mam.js"></script>
-	<script src="script/doT.min.js"></script>
-	<script src="script/jquery.color.min.js"></script>
-	<script src="script/jquery.animateNumber.js"></script>
-	<script type="text/javascript" src="script/loading1.js"></script>
 	<!-- 自定义区域 开始 -->
 	<section class="dataContainer">
 		<!--闪烁圆点 -->
@@ -90,6 +80,10 @@
 						<span id="monthTradingNum">0.00</span>元
 					</div>
 				</div>
+				<!-- 中国地图 -->
+				<div class="chinaMapMain" style="width:100%;height:45vh">
+					<div id="container" style="width:100%;height:45vh"></div>
+				</div>
 				<!-- 分公司 -->
 				<div class="companyListBox">
 					<div>
@@ -118,7 +112,7 @@
 					</div>
 				</div>
 				<!-- 南丁格尔玫瑰图 -->
-				<div id="pieChartTrade" style="width:100%; height:45vh"></div>
+				<!-- <div id="pieChartTrade" style="width:100%; height:45vh"></div> -->
 			</div>
 			<img src="image/boxFooterImg.png" alt="">
 		</div>
@@ -146,6 +140,16 @@
 			</div>
 		</div>
 	</section>
+	<script src="script/jquery-1.9.1.min.js"></script>
+	<script src="script/echarts-all-3.js" charset="utf-8"></script>
+	<!-- <script src="script/echarts.min.js"></script> -->
+	<script src="script/api.js?102123"></script>
+	<script src="script/H.js"></script>
+	<script src="script/doT.min.js"></script>
+	<script src="script/jquery.color.min.js"></script>
+	<script src="script/jquery.animateNumber.js"></script>
+	<script type="text/javascript" src="script/china.js"></script>
+	<script type="text/javascript" src="script/indexditu.js?1213"></script>
 	<!-- 自定义区域 结束 -->
 	<script>
 		var timer = null;
@@ -162,8 +166,8 @@
 			//双击返回退出APP
 			H.dblclickToCloseApp();
 			//定时请求数据
-			getSettingData();
 			getInfoData();
+			getSettingData();
 		})
     //南丁格尔图
 		function pieChartTrade(selecter, legendData, seriesData) {
@@ -448,17 +452,34 @@
 					series: [{
 						type: 'bar',
 						data: moneyData,
+						showBackground: true,
 						barWidth: 13,
-						color: function(params) {
-							var colorList = ['#ffdb5c', '#ff9f7f', '#fb7293', '#e7bcf3', '#8378ea', '#ffdb5c', '#0AAF9F', '#E89589'];
-							return colorList[params.dataIndex]
+						backgroundStyle: {
+							color: 'rgba(220, 220, 220, 0.8)'
 						},
-						label: {
-							show: true,
-							position: 'right',
-							textStyle: { //数值样式
-								color: '#fff',
-								fontSize: 8
+						itemStyle: {
+							normal: {
+								// color: new echarts.graphic.LinearGradient(
+								// 	0, 0, 0, 1, [{
+								// 		offset: 0,
+								// 		color: '#7e18fd'
+								// 	}, {
+								// 		offset: 1,
+								// 		color: '#ae75fd'
+								// 	}]
+								// ),
+								color: function(params) {
+									var colorList = ['#ffdb5c', '#ff9f7f', '#fb7293', '#e7bcf3', '#8378ea', '#ffdb5c', '#0AAF9F', '#E89589'];
+									return colorList[params.dataIndex]
+								},
+								label: {
+									show: true,
+									position: 'right',
+									textStyle: { //数值样式
+										color: '#fff',
+										fontSize: 8
+									}
+								}
 							}
 						}
 					}],
@@ -516,9 +537,6 @@
 				if (ret.body.code === 200) {
 						var datas = ret.body.data;
 						dynNum('monthTradingNum', datas, 2, true);
-				}else {
-						clearTimeout(timer);
-						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
@@ -539,9 +557,7 @@
 						var seriesData = datas.seriesData;
 						var interText = doT.template($("#companyTradeData").text());
 						$(".dataBodyList").html(interText(datas.seriesData));
-						pieChartTrade("pieChartTrade", legendData, seriesData);
-				}else {
-						alert('网络连接错误，请检查网络！')
+						// pieChartTrade("pieChartTrade", legendData, seriesData);
 				}
 			}
 		}
@@ -561,8 +577,6 @@
 						var columnXaxisData = datas.X;
 						var columnSeriesData = datas.Y;
 						drawColumn('columnChartTrade', columnXaxisData, columnSeriesData);
-				}else {
-						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
@@ -582,8 +596,6 @@
 						var columnXaxisData = datas.X;
 						var columnSeriesData = datas.Y;
 						drawColumnH('columnChartMonthActive', columnXaxisData, columnSeriesData);
-				}else {
-						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
@@ -603,8 +615,6 @@
 						var lineXaxisData = datas.X;
 						var lineSeriesData = datas.Y;
 						drawLine('lineChartActive', lineXaxisData, lineSeriesData)
-				}else {
-						alert('网络连接错误，请检查网络！')
 				}
 			}
 		}
