@@ -300,7 +300,7 @@ option = {
     // },
     geo: {
         map: 'china',
-         zoom:1.22,
+         zoom:1.1,
         label: {
             emphasis: {
                 show: false
